@@ -1,9 +1,7 @@
 <!-- Connect DB -->
 <?php
-$servername = "127.0.0.1:3306";
-$username = "root";
-$password = "";
-$database = "kad_kahwin";
+// Load configuration
+include 'config.php';
 
 $connection = mysqli_connect($servername, $username, $password);
 
@@ -48,6 +46,22 @@ if (mysqli_num_rows($query2) == 0) {
     $seeder = "INSERT INTO kehadiran (id, jumlah_kehadiran, jumlah_tidak_hadir) VALUES (1, 0, 0)";
     mysqli_query($connection, $seeder);
 }
+
+// Create RSVP Guests Table
+$query3 = mysqli_query($connection, "SHOW TABLES LIKE 'rsvp_guests'");
+
+if (mysqli_num_rows($query3) == 0) {
+    $table_rsvp = "CREATE TABLE `rsvp_guests` (
+    `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    `jumlah_pax` int UNSIGNED NOT NULL,
+    `hubungan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    `status` enum('hadir','tidak_hadir') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+    mysqli_query($connection, $table_rsvp);
+}
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +75,7 @@ if (mysqli_num_rows($query2) == 0) {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="./images/logo.png" />
-    <title>John dan Sarah</title>
+    <title><?php echo $Lelaki_Short; ?> & <?php echo $Perempuan_Short; ?></title>
 </head>
 
 <body>
@@ -69,8 +83,9 @@ if (mysqli_num_rows($query2) == 0) {
         <div id="overlay" class="overlay">
             <div class="overlay-content">
                 <button id="toggle-content" class="toggle-button">
-                    <p>John</p>
-                    <p>Sarah</p>
+                    <p><?php echo $Lelaki_Short; ?></p>
+                    <p>&</p>
+                    <p><?php echo $Perempuan_Short; ?></p>
                     <p class="buka">Buka</p>
                 </button>
             </div>
@@ -83,13 +98,13 @@ if (mysqli_num_rows($query2) == 0) {
             <div class="content">
                 <img src="./images/bismillah.png" alt="" class="fade-top-1">
                 <p class="title fade-top-2">Walimatul urus</p>
-                <h2 class="fade-top-3">John</h2>
+                <h2 class="fade-top-3"><?php echo $Lelaki_Long; ?></h2>
                 <h2 class="fade-top-3">&</h2>
-                <h2 class="fade-top-3">Sarah</h2>
+                <h2 class="fade-top-3"><?php echo $Perempuan_Short; ?></h2>
                 <p class="date fade-top-4">
-                    <span>Sabtu</span>
+                    <span><?php echo $Wedding_Date_Malay; ?></span>
                     <span>|</span>
-                    <span>31 December 9999</span>
+                    <span><?php echo $Wedding_Date_Full; ?></span>
                 </p>
             </div>
         </section>
@@ -102,9 +117,9 @@ if (mysqli_num_rows($query2) == 0) {
                     <p>Dengan penuh kesyukuran</p>
                     <p>kami</p>
                     <div class="parent">
-                        <p>Ali Bin Abu</p>
+                        <p><?php echo $Parents_Male_1; ?></p>
                         <p>&</p>
-                        <p>Miya Binti Kasim</p>
+                        <p><?php echo $Parents_Female_1; ?></p>
                     </div>
                     <p>Menjemput</p>
                     <p>Dato' | Datin | Tuan | Puan | Encik | Cik</p>
@@ -112,24 +127,24 @@ if (mysqli_num_rows($query2) == 0) {
                     <p>majlis perkahwinan putera kami</p>
                 </div>
                 <div class="two">
-                    <p>Muhamad John Bin Ali</p>
+                    <p><?php echo $Lelaki_Long; ?></p>
                     <p>&</p>
-                    <p>Nur Sarah Binti Anwar</p>
+                    <p><?php echo $Perempuan_Long; ?></p>
                 </div>
                 <div class="three">
                     <p class="title">Tempat</p>
-                    <p>10A Jalan Seri Ampang 2</p>
-                    <p>Kampung Pisang</p>
-                    <p>47300 Subang, Selangor</p>
+                    <p><?php echo $Venue_Address_Line1; ?></p>
+                    <p><?php echo $Venue_Address_Line2; ?></p>
+                    <p><?php echo $Venue_Address_Line3; ?></p>
                 </div>
                 <div class="four">
                     <p class="title">Tarikh</p>
-                    <p>Sabtu, 31 December 9999</p>
-                    <p>Bersamaan 30 Zulhijjah 9999H</p>
+                    <p><?php echo $Wedding_Date_Full; ?></p>
+                    <p>Bersamaan <?php echo $Wedding_Date_Hijri; ?></p>
                 </div>
                 <div class="five">
                     <p class="title">Masa</p>
-                    <p>11:00 AM - 4:00 PM</p>
+                    <p><?php echo $Wedding_Time; ?></p>
                 </div>
             </div>
             <!-- Aturcara & Countdown Section -->
@@ -138,7 +153,7 @@ if (mysqli_num_rows($query2) == 0) {
                 <div class="hero connect-page">
                     <div class="container">
                         <div class="hero-body">
-                            <div class="campaign campaign-0">
+                            <div class="campaign campaign-0" data-wedding-date="<?php echo $Wedding_Date_ISO; ?>">
                                 <div class="counter timer">
                                     <span class="title">Menghitung hari</span>
                                     <div class="counter-boxes">
@@ -267,12 +282,12 @@ if (mysqli_num_rows($query2) == 0) {
 
     <!-- Bottom Modal -->
     <div id="calendar-menu" class="toggle-menu">
-        <div class="calendar">
+            <div class="calendar">
             <h1>Calendar</h1>
             <p>
-                <span>31 December 9999</span>
+                <span><?php echo $Wedding_Date_Full; ?></span>
                 <span>|</span>
-                <span>30 Zulhijjah 9999H</span>
+                <span><?php echo $Wedding_Date_Hijri; ?></span>
             </p>
             <div class="button">
                 <button class="google" onclick="addGoogleCalendar()">
@@ -319,17 +334,32 @@ if (mysqli_num_rows($query2) == 0) {
 
     <div id="rsvp-menu" class="toggle-menu">
         <div class="rsvp">
-            <h1>Kehadiran</h1>
-            <div class="button">
-                <button type="button" id="btn-hadir">
-                    <i class='bx bx-check'></i>
-                    <span>Hadir</span>
-                </button>
-                <button type="button" id="btn-tidak-hadir">
-                    <i class='bx bx-x'></i>
-                    <span>Tidak Hadir</span>
-                </button>
-            </div>
+            <h1>RSVP - Sahkan Kehadiran</h1>
+            <form id="form-rsvp" class="form-rsvp" action="process_rsvp.php" method="POST">
+                <label for="rsvp-nama">Nama Anda</label>
+                <input type="text" name="nama" id="rsvp-nama" placeholder="Nama Penuh" required>
+
+                <label for="rsvp-pax">Jumlah Pax</label>
+                <input type="number" name="jumlah_pax" id="rsvp-pax" placeholder="Berapa orang?" min="1" max="20" required>
+
+                <label for="rsvp-hubungan">Hubungan dengan Pengantin</label>
+                <input type="text" name="hubungan" id="rsvp-hubungan" placeholder="Cth: Kawan, Keluarga, Rakan Kerja" required>
+
+                <div class="button">
+                    <button type="submit" name="status" value="hadir" class="btn-hadir">
+                        <i class='bx bx-check'></i>
+                        <span>Hadir</span>
+                    </button>
+                    <button type="submit" name="status" value="tidak_hadir" class="btn-tidak-hadir">
+                        <i class='bx bx-x'></i>
+                        <span>Tidak Hadir</span>
+                    </button>
+                    <button type="button" class="tutup">
+                        <i class='bx bx-x'></i>
+                        <span>Tutup</span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 

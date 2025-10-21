@@ -1192,6 +1192,76 @@ section {
     color: white;
 }
 
+/*============================================================================================
+    # RSVP Form Styles
+============================================================================================*/
+.toggle-menu .rsvp form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.toggle-menu .rsvp form label {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.toggle-menu .rsvp form input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    outline: none;
+    border: 1px solid #ddd;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.toggle-menu .rsvp .button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.toggle-menu .rsvp .button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 6px;
+    cursor: pointer;
+    gap: 5px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+}
+
+.toggle-menu .rsvp .button .btn-hadir {
+    background: #4CAF50;
+    color: white;
+}
+
+.toggle-menu .rsvp .button .btn-tidak-hadir {
+    background: #f44336;
+    color: white;
+}
+
+.toggle-menu .rsvp .button .tutup {
+    background: #F8F4FF;
+    color: #333;
+}
+
+.toggle-menu .rsvp .button button:hover {
+    opacity: 0.8;
+}
+
 
 /*============================================================================================
     # Image Carousel

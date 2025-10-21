@@ -84,14 +84,93 @@ function setupCountdown(campaignSelector, startTimeMillis, endTimeMillis) {
     setInterval(countdown, 1000);
 }
 
+// Get wedding date from data attribute
+function getWeddingTimestamp() {
+    const campaignElement = document.querySelector('.campaign-0');
+    if (campaignElement) {
+        const weddingDate = campaignElement.getAttribute('data-wedding-date');
+        if (weddingDate) {
+            console.log('Found wedding date:', weddingDate); // Debug log
+            return new Date(weddingDate + 'T00:00:00').getTime();
+        }
+    }
+    console.log('Using fallback date: 2025-12-12'); // Debug log
+    // Fallback to December 12, 2025 if data attribute not found
+    return new Date('2025-12-12T00:00:00').getTime();
+}
+
 document.addEventListener("DOMContentLoaded", function (event) {
     if (!document.querySelectorAll || !document.body.classList) {
         return;
     }
 
+    // Initialize countdown after DOM is ready
+    setupCountdown(".campaign-0", new Date().getTime(), getWeddingTimestamp());
+    
+    // Handle RSVP form submission
+    const rsvpForm = document.getElementById("form-rsvp");
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitButton = e.submitter;
+            const status = submitButton.value; // 'hadir' or 'tidak_hadir'
+            
+            // Add status to form data
+            formData.set('status', status);
+            
+            fetch('process_rsvp.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // Debug: log the raw response
+                console.log('Raw response status:', response.status);
+                console.log('Raw response headers:', response.headers.get('content-type'));
+                
+                // Check if response is ok
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                // Get response text first to debug
+                return response.text().then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        console.error('JSON parse error:', e);
+                        console.error('Response text was:', text);
+                        throw new Error("Response is not valid JSON: " + text.substring(0, 100));
+                    }
+                });
+            })
+            .then(data => {
+                if (data && data.success) {
+                    // Show success message
+                    const icon = status === 'hadir' ? 'bx bxs-wink-smile' : 'bx bxs-sad';
+                    displaySuccessMessage(data.message, icon, 'rsvp-menu');
+                    
+                    // Reset form
+                    rsvpForm.reset();
+                } else {
+                    // Show error message
+                    alert('Error: ' + (data ? data.message : 'Unknown error occurred'));
+                }
+            })
+            .catch(error => {
+                console.error('RSVP Error:', error);
+                // More specific error message
+                if (error.message.includes('JSON')) {
+                    alert('Data telah disimpan tetapi terdapat masalah teknikal. Sila semak dalam senarai tetamu untuk memastikan.');
+                } else {
+                    alert('Terdapat masalah semasa menghantar RSVP. Sila cuba lagi.');
+                }
+            });
+        });
+    }
 });
-
-setupCountdown(".campaign-0", new Date().getMilliseconds(), 1924920000000);
 
 
 
@@ -321,7 +400,7 @@ function toggleMenu(menuId, event) {
 function closeAllMenus() {
     for (const menuId of Object.values(toggleButtons)) {
         const menu = document.getElementById(menuId);
-        if (menu.classList.contains('open')) {
+        if (menu && menu.classList.contains('open')) {
             menu.classList.remove('open'); // Close the menu
         }
     }
@@ -330,7 +409,9 @@ function closeAllMenus() {
 // Add click event listeners to all toggle buttons
 for (const [buttonId, menuId] of Object.entries(toggleButtons)) {
     const button = document.getElementById(buttonId);
-    button.addEventListener('click', (event) => toggleMenu(menuId, event));
+    if (button) {  // Check if button exists before adding event listener
+        button.addEventListener('click', (event) => toggleMenu(menuId, event));
+    }
 }
 
 // Add a global click handler to close all menus when clicking outside
@@ -339,7 +420,9 @@ document.addEventListener('click', () => closeAllMenus());
 // Prevent clicks within menus from closing them
 for (const menuId of Object.values(toggleButtons)) {
     const menu = document.getElementById(menuId);
-    menu.addEventListener('click', (event) => event.stopPropagation());
+    if (menu) {  // Check if menu exists before adding event listener
+        menu.addEventListener('click', (event) => event.stopPropagation());
+    }
 }
 
 // Function to close a specific menu
@@ -411,6 +494,31 @@ document.getElementById("form-ucapan").addEventListener("submit", function (even
 
 
 /** =====================================================
+ *  Display Success Message Function
+  ======================================================= */
+function displaySuccessMessage(message, iconClass, closeMenuId) {
+    // Close the specified menu first
+    if (closeMenuId) {
+        const closeMenu = document.getElementById(closeMenuId);
+        if (closeMenu) {
+            closeMenu.classList.remove("open");
+        }
+    }
+    
+    // Display the success message
+    const successMenu = document.getElementById("success-menu");
+    if (successMenu) {
+        successMenu.innerHTML = `<div class='success-message'><i class='${iconClass}'></i><p>${message}</p></div>`;
+        successMenu.classList.add("open");
+        
+        // Auto-close after 3 seconds
+        setTimeout(() => {
+            successMenu.classList.remove("open");
+        }, 3000);
+    }
+}
+
+/** =====================================================
  *  Handle Kehadiran Count
   ======================================================= */
 function incrementCount(endpoint, successMessage, iconClass, closeMenuId) {
@@ -449,18 +557,6 @@ function incrementCount(endpoint, successMessage, iconClass, closeMenuId) {
         alert("Error processing the request.");
     });
 }
-
-// Attach the click event to the "Hadir" and "Tidak Hadir" buttons
-document.getElementById("btn-hadir").onclick = function() {
-    incrementCount('count_hadir.php', "Kami menantikan kedatangan anda!", 'bx bxs-wink-smile', 'rsvp-menu'); // Success message and optionally close RSVP menu
-};
-
-document.getElementById("btn-tidak-hadir").onclick = function() {
-    incrementCount('count_tidak_hadir.php', "Maaf, mungkin lain kali.", 'bx bxs-sad', 'rsvp-menu'); // Success message and optionally close RSVP menu
-};
-
-
-
 
 
 /** =====================================================
