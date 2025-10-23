@@ -1,5 +1,5 @@
 /* Import */
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Cinzel+Decorative:wght@400;700;900&family=Spartan:wght@100;200;300;400;500;600;700;800;900&family=Alex+Brush&display=swap');
 
 /* General Global Setting */
 * {
@@ -11,8 +11,9 @@
 body {
     position: relative;
     /*background: linear-gradient(to right, #24243e, #302b63, #0f0c29);*/
-    background: #F8F4FF;
-    font-family: "Roboto", sans-serif;
+    background: #F0e8d7;
+    font-family: "Crimson Text", serif;
+    font-size: 16px; /* Base font size for em calculations */
     width: 100%;
     height: 100%;
 }
@@ -21,35 +22,31 @@ body {
     # Wrapper Overlay
 ============================================================================================*/
 .wrapper {
-    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
+    display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    background: #F8F4FF;
+    z-index: 1050; /* Lower than footer but high enough to be above card */
     transition: opacity 0.5s ease;
 }
 
 .wrapper.hidden {
     opacity: 0;
-    /* Fade out effect when 'hidden' class is added */
+    pointer-events: none;
 }
 
-/* Overlay that covers the entire viewport */
+/* Overlay that sits on top of the card */
 .overlay {
-    width: 420px;
-    /* Same width as the card-container */
-    height: 100%;
-    /* Blur the background */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    background-image: url('../images/intro-bg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    width: 100%;
+    height: 100%;
 }
 
 /* Center the button within the overlay */
@@ -60,7 +57,6 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
-    backdrop-filter: blur(3px);
 }
 
 /* Circular toggle button */
@@ -69,27 +65,40 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: #f0e8d7;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    font-size: 24px;
+    font-size: 1.5em; /* 24px / 16px = 1.5em */
     cursor: pointer;
     border: none;
+    overflow: hidden; /* Ensure content doesn't overflow the circular shape */
+    position: relative;
+}
+
+.overlay .overlay-content .toggle-button .monogram {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire circle while maintaining aspect ratio */
+    border-radius: 50%; /* Make the image itself circular */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfect centering */
 }
 
 .overlay .overlay-content .toggle-button p {
     margin: 0;
     padding: 0;
-    font-size: 30px;
+    font-size: 1.875em; /* 30px / 16px = 1.875em */
     font-weight: 500;
     font-family: "Great Vibes", cursive;
     color: #302b63;
 }
 
 .overlay .overlay-content .toggle-button .buka {
-    font-size: 16px;
+    font-size: 1em; /* 16px / 16px = 1em (base size) */
     font-family: 300;
     font-family: "Bebas Neue", Arial, sans-serif;
     margin-top: 10px;
@@ -123,35 +132,41 @@ body {
     }
 }
 
-.fade-top-1 {
-    animation: growth 0.5s ease-in-out;
-}
-
-.fade-top-2 {
-    animation: growth 0.8s ease-in-out;
-}
-
-.fade-top-3 {
-    animation: growth 1s ease-in-out;
-}
-
+/* Fade-top animations - only trigger when card is active */
+.fade-top-1,
+.fade-top-2,
+.fade-top-3,
 .fade-top-4 {
-    animation: growth 1.2s ease-in-out;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card.show .fade-top-1 {
+    animation: growth 0.5s ease-in-out 0.1s forwards;
+}
+
+.card.show .fade-top-2 {
+    animation: growth 0.8s ease-in-out 0.3s forwards;
+}
+
+.card.show .fade-top-3 {
+    animation: growth 1s ease-in-out 0.5s forwards;
+}
+
+.card.show .fade-top-4 {
+    animation: growth 1.2s ease-in-out 0.7s forwards;
 }
 
 @keyframes growth {
     0% {
         transform: scale(0);
         opacity: 0;
-        /* transform: translateY(-50px);
-        opacity: 0; */
     }
 
     100% {
         transform: scale(1);
         opacity: 1;
-        /* transform: translateY(0);
-        opacity: 1; */
     }
 }
 
@@ -180,7 +195,7 @@ body {
     position: absolute;
     left: -10px;
     /* Start just off the left edge of the card */
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #fefeff, #d4d994);
     border-radius: 50%;
     /* Rounded shape */
     opacity: 0.5;
@@ -205,17 +220,23 @@ body {
     # Card
 ============================================================================================*/
 .card {
-    display: none;
+    display: block; /* Show card by default */
     max-width: 420px;
     margin: 0 auto;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     background: white;
     border-radius: 3px;
-    font-size: 14px;
-    line-height: 16px;
-    font-family: "Roboto", sans-serif;
+    font-size: 0.875em; /* 14px / 16px = 0.875em */
+    line-height: 1.143em; /* 16px / 14px = 1.143 (relative to element) */
+    font-family: "Spartan", sans-serif !important;
     position: relative;
     overflow: hidden;
+    filter: blur(10px); /* Blur when overlay is active */
+    transition: filter 0.5s ease;
+}
+
+.card.show {
+    filter: blur(0px); /* Remove blur when overlay is hidden */
 }
 
 section {
@@ -227,7 +248,7 @@ section {
     # Intro
 ============================================================================================*/
 .card section.intro {
-    background: url(../images/intro2-bg.png), linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF);
+    background: url(../images/intro-bg.png), linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF); /* intro2-bg.png*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -254,29 +275,38 @@ section {
 
 .card section.intro .content p.title {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     color: #111111;
     text-transform: uppercase;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: "Roboto", sans-serif;
+    font-size: 1em; /* 16px / 16px = 1em (base size) */
+    font-weight: 300;
+    font-family: "Spartan", sans-serif;
     letter-spacing: 1px;
 }
 
 .card section.intro .content h2 {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    font-family: "Allura", cursive;
-    font-size: 48px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: "Cinzel Decorative", serif !important;
+    font-size: 3em; /* 48px / 16px = 3em (large heading) */
     font-weight: 500;
-    color: #111111;
+    color: #893941;
+}
+
+.card section.intro .content h3 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: "Cinzel Decorative", serif !important;
+    font-size: 1.5em; /* 48px / 16px = 3em (large heading) */
+    font-weight: 300;
+    color: #893941;
 }
 
 .card section.intro .content .date {
     color: #111111;
-    font-family: "Roboto", sans-serif;
+    font-family: "Crimson Text", serif;
     letter-spacing: 1px;
-    font-size: 16px;
+    font-size: 1em; /* 16px / 16px = 1em (base size) */
 }
 
 
@@ -292,7 +322,7 @@ section {
     justify-content: center;
     gap: 10px;
     padding: 50px 0px;
-    background: linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF);
+    background: linear-gradient(to right, #F0e8d7, #F0e8d7, #F0e8d7);
     min-height: 100vh;
 }
 
@@ -311,11 +341,13 @@ section {
     z-index: 500;
 }
 
+/* General paragraph styling for event-info */
 .card section.info .event-info p {
-    font-family: "Roboto", sans-serif;
+    font-family: "Crimson Text", serif;
     color: #111111;
 }
 
+/* Section .one styling */
 .card section.info .event-info .one {
     display: flex;
     flex-direction: column;
@@ -324,21 +356,16 @@ section {
     gap: 3px;
 }
 
-.card section.info .event-info .three,
-.card section.info .event-info .four {
-    margin-bottom: 15px;
-}
-
-.card section.info .event-info .one p,
-.card section.info .event-info .three p,
-.card section.info .event-info .four p,
-.card section.info .event-info .five p {
+/* .one paragraph styling */
+.card section.info .event-info .one p {
+    font-family: "Spartan", sans-serif !important;
+    font-size: 0.8125em !important; /* 13px / 16px = 0.8125em */
     color: #111111;
     font-weight: 300;
-    font-size: 14px;
     letter-spacing: 1px;
 }
 
+/* .one parent container styling */
 .card section.info .event-info .one .parent {
     display: flex;
     flex-direction: column;
@@ -347,36 +374,51 @@ section {
     gap: 5px;
 }
 
+/* .one parent paragraph styling */
 .card section.info .event-info .one .parent p {
-    font-size: 18px;
+    font-family: "Alex Brush", cursive !important;
+    font-size: 1.375em !important; /* 22px / 16px = 1.375em */
     font-weight: 700;
+    color: #111111;
 }
 
+/* Section .two styling */
 .card section.info .event-info .two {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     margin-bottom: 20px;
     gap: 15px;
+    line-height: 1.5em;
 }
 
 .card section.info .event-info .two p {
-    font-family: "Playfair Display", serif;
-    color: darkcyan;
+    font-family: "Cinzel Decorative", serif !important;
+    color: #893941;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.375em; /* 22px / 16px = 1.375em (medium heading) */
+}
+
+/* Sections .three, .four, .five styling */
+.card section.info .event-info .three,
+.card section.info .event-info .four {
+    margin-bottom: 15px;
+}
+
+.card section.info .event-info .three p,
+.card section.info .event-info .four p,
+.card section.info .event-info .five p {
+    color: #111111;
+    font-weight: 300;
+    font-size: 0.875em; /* 14px / 16px = 0.875em (small text) */
+    letter-spacing: 1px;
 }
 
 .card section.info .event-info .three .title,
 .card section.info .event-info .four .title,
 .card section.info .event-info .five .title {
     margin-top: 30px;
-}
-
-.card section.info .event-info .three .title,
-.card section.info .event-info .four .title,
-.card section.info .event-info .five .title {
-    font-size: 18px;
+    font-size: 1.125em; /* 18px / 16px = 1.125em (small heading) */
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -546,7 +588,7 @@ section {
 
 @media screen and (max-width: 768px) {
     .card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box span {
-        font-size: 10px;
+        font-size: 0.625em; /* 10px / 16px = 0.625em (very small text) */
         letter-spacing: 0;
     }
 }
@@ -574,7 +616,7 @@ section {
 }
 
 .card section.info .aturcara p {
-    font-family: "Roboto", sans-serif;
+    font-family: "Crimson Text", serif;
     text-align: center;
     letter-spacing: 1px;
     color: #111111;
@@ -582,10 +624,10 @@ section {
 
 .card section.info .aturcara .title {
     color: #111111;
-    font-family: "Roboto", sans-serif;
+    font-family: "Crimson Text", serif;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.125em; /* 18px / 16px = 1.125em (small heading) */
 }
 
 .card section.info .aturcara .one,
@@ -603,7 +645,7 @@ section {
 .card section.info .aturcara .four p {
     color: #111111;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 0.875em; /* 14px / 16px = 0.875em (small text) */
     letter-spacing: 1px;
 }
 
@@ -642,7 +684,7 @@ section {
 }
 
 .card section.info .ucapan .content p {
-    font-size: 16px;
+    font-size: 1em; /* 16px / 16px = 1em (base size) */
     font-family: 'Cormorant Garamond', serif;
     margin: 0;
     text-align: center;
@@ -695,7 +737,7 @@ section {
 }
 
 .card section.info .rsvp .container-message .content p {
-    font-size: 16px;
+    font-size: 1em; /* 16px / 16px = 1em (base size) */
     font-family: 'Cormorant Garamond', serif;
     margin: 0;
     text-align: left;
@@ -716,7 +758,7 @@ section {
 .card section.info .rsvp .container-message .content p.name::after {
     content: '--';
     color: grey;
-    font-size: 16px;
+    font-size: 1em; /* 16px / 16px = 1em (base size) */
     margin-left: 8px;
 }
 
@@ -786,12 +828,12 @@ section {
 }
 
 .card section.info .rsvp .beri-ucapan-button button .bx {
-    font-size: 16px;
+    font-size: 1em; /* 16px / 16px = 1em (base size) */
     color: darkcyan;
 }
 
 .card section.info .rsvp .beri-ucapan-button button span {
-    font-size: 14px;
+    font-size: 0.875em; /* 14px / 16px = 0.875em (small text) */
     font-weight: 500;
 }
 
@@ -804,13 +846,21 @@ section {
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1100; /* Higher than wrapper to ensure it's always visible */
+    opacity: 0; /* Hidden by default */
+    transform: translateY(100%); /* Slide down initially */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.footer.show {
+    opacity: 1; /* Show when active */
+    transform: translateY(0); /* Slide up when shown */
 }
 
 .footer ul.menu {
     max-width: 420px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #5e6623, #5e6623, #5e6623); /* #d4d994*/
     border-radius: 20px 20px 0 0;
     height: 4rem;
     padding: 0 16px;
@@ -844,7 +894,7 @@ section {
     right: 0;
     max-width: 400px;
     margin: 0 auto;
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #cb7885, #cb7885, #cb7885); /* #d4d994*/
     box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.2);
     padding: 20px;
     transition: bottom 0.4s;
@@ -857,7 +907,7 @@ section {
 }
 
 .toggle-menu h1 {
-    font-size: 24px;
+    font-size: 1.5em; /* 24px / 16px = 1.5em (medium-large heading) */
     font-weight: 700;
     margin-bottom: 10px;
     color: white;
@@ -884,7 +934,7 @@ section {
 }
 
 .toggle-menu .calendar p span {
-    font-size: 16px;
+    font-size: 1em; /* 16px / 16px = 1em (base size) */
     font-family: 'Cormorant Garamond', serif;
     color: white;
 }

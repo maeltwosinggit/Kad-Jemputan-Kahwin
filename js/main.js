@@ -12,18 +12,23 @@
 // });
 
 document.getElementById("toggle-content").addEventListener("click", function () {
-    var wrapper = document.querySelector(".wrapper"); // Change to wrapper
+    var wrapper = document.querySelector(".wrapper");
     var card = document.querySelector(".card");
+    var footer = document.querySelector(".footer");
 
-    // Add the 'hidden' class to start the fade out transition
-    wrapper.classList.add("hidden");
+    // Start the transition
+    wrapper.classList.add("hidden"); // Fade out the overlay button
+    card.classList.add("show"); // Remove blur from card
+    
+    // Show the footer menu with a slight delay for better UX
+    setTimeout(function() {
+        footer.classList.add("show"); // Show footer menu
+    }, 300); // Show footer 300ms after button click
 
-    // Wait for the transition to complete
-    wrapper.addEventListener("transitionend", function () {
-        // After fade out is complete, hide the wrapper and show the card
-        wrapper.style.display = "none"; // Hide the wrapper
-        card.style.display = "block";   // Show the card
-    }, { once: true });
+    // After transition completes, hide the wrapper completely
+    setTimeout(function() {
+        wrapper.style.display = "none";
+    }, 500); // Match the CSS transition duration
 
     // Play the audio
     const audioPlayer = document.getElementById("audio-player");

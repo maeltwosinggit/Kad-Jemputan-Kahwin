@@ -83,10 +83,8 @@ if (mysqli_num_rows($query3) == 0) {
         <div id="overlay" class="overlay">
             <div class="overlay-content">
                 <button id="toggle-content" class="toggle-button">
-                    <p><?php echo $Lelaki_Short; ?></p>
-                    <p>&</p>
-                    <p><?php echo $Perempuan_Short; ?></p>
-                    <p class="buka">Buka</p>
+                    <img src="./images/Amirul & Pasangan Monogram (1).svg" alt="<?php echo $Lelaki_Short; ?> & <?php echo $Perempuan_Short; ?> Monogram" class="monogram">
+                    <!-- <p class="buka">Open</p> -->
                 </button>
             </div>
         </div>
@@ -96,10 +94,10 @@ if (mysqli_num_rows($query3) == 0) {
         <!-- Intro Section -->
         <section class="intro">
             <div class="content">
-                <img src="./images/bismillah.png" alt="" class="fade-top-1">
-                <p class="title fade-top-2">Walimatul urus</p>
-                <h2 class="fade-top-3"><?php echo $Lelaki_Long; ?></h2>
-                <h2 class="fade-top-3">&</h2>
+                <!-- <img src="./images/bismillah.png" alt="" class="fade-top-1"> -->
+                <p class="title fade-top-2">The Wedding of</p>
+                <h2 class="fade-top-3"><?php echo $Lelaki_Short; ?></h2>
+                <h3 class="fade-top-3">&</h3>
                 <h2 class="fade-top-3"><?php echo $Perempuan_Short; ?></h2>
                 <p class="date fade-top-4">
                     <span><?php echo $Wedding_Date_Malay; ?></span>
@@ -111,20 +109,17 @@ if (mysqli_num_rows($query3) == 0) {
 
         <!-- Event Info Section -->
         <section class="info">
-            <img src="./images/assalamualaikum-3.png" alt="" class="assalamualaikum reveal fade-bottom">
+            <!-- <img src="./images/assalamualaikum-3.png" alt="" class="assalamualaikum reveal fade-bottom"> -->
             <div class="event-info reveal fade-bottom">
-                <div class="one">
-                    <p>Dengan penuh kesyukuran</p>
-                    <p>kami</p>
+                <div class="one">With Joy and Gratitude to Almighty God</p>
                     <div class="parent">
                         <p><?php echo $Parents_Male_1; ?></p>
                         <p>&</p>
                         <p><?php echo $Parents_Female_1; ?></p>
                     </div>
-                    <p>Menjemput</p>
-                    <p>Dato' | Datin | Tuan | Puan | Encik | Cik</p>
-                    <p>seisi keluarga hadir ke</p>
-                    <p>majlis perkahwinan putera kami</p>
+                    <p>cordially invite</p>
+                    <p>Yang Berbahagia Tan Sri | Puan Sri | Dato’ Seri | Datin Seri | Dato’| Datin | Mr. | Mrs. | Miss</p>
+                    <p>to the wedding reception of our son and daughter</p>
                 </div>
                 <div class="two">
                     <p><?php echo $Lelaki_Long; ?></p>
@@ -132,18 +127,18 @@ if (mysqli_num_rows($query3) == 0) {
                     <p><?php echo $Perempuan_Long; ?></p>
                 </div>
                 <div class="three">
-                    <p class="title">Tempat</p>
+                    <p class="title">Venue</p>
                     <p><?php echo $Venue_Address_Line1; ?></p>
                     <p><?php echo $Venue_Address_Line2; ?></p>
                     <p><?php echo $Venue_Address_Line3; ?></p>
                 </div>
                 <div class="four">
-                    <p class="title">Tarikh</p>
-                    <p><?php echo $Wedding_Date_Full; ?></p>
+                    <p class="title">Date</p>
+                    <p><?php echo $Wedding_Date_Full_Month; ?></p>
                     <p>Bersamaan <?php echo $Wedding_Date_Hijri; ?></p>
                 </div>
                 <div class="five">
-                    <p class="title">Masa</p>
+                    <p class="title">Time</p>
                     <p><?php echo $Wedding_Time; ?></p>
                 </div>
             </div>
@@ -269,16 +264,18 @@ if (mysqli_num_rows($query3) == 0) {
                 </div>
             </div>
         </section>
-        <section class="footer">
-            <ul class="menu">
-                <li id="calendar-btn"><i class='bx bx-calendar'></i></li>
-                <li id="location-btn"><i class='bx bx-map'></i></li>
-                <li id="music-btn"><i class='bx bx-music'></i></li>
-                <li id="rsvp-btn"><i class='bx bx-envelope'></i></li>
-                <li id="contact-btn"><i class='bx bx-phone'></i></li>
-            </ul>
-        </section>
     </div>
+
+    <!-- Footer moved outside of card for proper fixed positioning -->
+    <section class="footer">
+        <ul class="menu">
+            <li id="calendar-btn"><i class='bx bx-calendar'></i></li>
+            <li id="location-btn"><i class='bx bx-map'></i></li>
+            <li id="music-btn"><i class='bx bx-music'></i></li>
+            <li id="rsvp-btn"><i class='bx bx-envelope'></i></li>
+            <li id="contact-btn"><i class='bx bx-phone'></i></li>
+        </ul>
+    </section>
 
     <!-- Bottom Modal -->
     <div id="calendar-menu" class="toggle-menu">
