@@ -226,7 +226,7 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     background: white;
     border-radius: 3px;
-    font-size: 0.875em; /* 14px / 16px = 0.875em */
+    font-size: 1em; /* 14px / 16px = 0.875em */
     line-height: 1.143em; /* 16px / 14px = 1.143 (relative to element) */
     font-family: "Spartan", sans-serif !important;
     position: relative;
@@ -322,7 +322,7 @@ section {
     justify-content: center;
     gap: 10px;
     padding: 50px 0px;
-    background: linear-gradient(to right, #F0e8d7, #F0e8d7, #F0e8d7);
+    background: linear-gradient(to right, #d4d994, #d4d994, #d4d994);
     min-height: 100vh;
 }
 
@@ -335,7 +335,7 @@ section {
 }
 
 .card section.info .event-info {
-    width: 75%;
+    width: 85%;
     text-align: center;
     position: relative;
     z-index: 500;
@@ -359,10 +359,11 @@ section {
 /* .one paragraph styling */
 .card section.info .event-info .one p {
     font-family: "Spartan", sans-serif !important;
-    font-size: 0.8125em !important; /* 13px / 16px = 0.8125em */
-    color: #111111;
+    font-size: 0.70em !important; /* 13px / 16px = 0.8125em */
+    color: #5e6623;
     font-weight: 300;
     letter-spacing: 1px;
+    line-height: 1.6;
 }
 
 /* .one parent container styling */
@@ -376,10 +377,10 @@ section {
 
 /* .one parent paragraph styling */
 .card section.info .event-info .one .parent p {
-    font-family: "Alex Brush", cursive !important;
+    font-family: "Playfair Display", serif !important;
     font-size: 1.375em !important; /* 22px / 16px = 1.375em */
-    font-weight: 700;
-    color: #111111;
+    font-weight: 500;
+    color: #3a4d1d;
 }
 
 /* Section .two styling */
@@ -387,15 +388,16 @@ section {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     gap: 15px;
     line-height: 1.5em;
 }
 
 .card section.info .event-info .two p {
-    font-family: "Cinzel Decorative", serif !important;
-    color: #893941;
-    font-weight: 700;
+    /* font-family: "Cinzel Decorative", serif !important; */
+    font-family: "Playfair Display", serif !important;
+    color: #3a4d1d;
+    font-weight: 500;
     font-size: 1.375em; /* 22px / 16px = 1.375em (medium heading) */
 }
 
@@ -408,19 +410,61 @@ section {
 .card section.info .event-info .three p,
 .card section.info .event-info .four p,
 .card section.info .event-info .five p {
-    color: #111111;
+    color: #3a4d1d;
     font-weight: 300;
     font-size: 0.875em; /* 14px / 16px = 0.875em (small text) */
     letter-spacing: 1px;
+    font-family: 'spartan', sans-serif !important;
 }
 
 .card section.info .event-info .three .title,
 .card section.info .event-info .four .title,
 .card section.info .event-info .five .title {
     margin-top: 30px;
-    font-size: 1.125em; /* 18px / 16px = 1.125em (small heading) */
+    font-size: 1em; /* 18px / 16px = 1.125em (small heading) */
     font-weight: 700;
     margin-bottom: 10px;
+    font-family: 'cinzel decorative', serif !important;
+    color: #0d3f18;
+}
+
+/* Special styling for venue name (address line 1) */
+.card section.info .event-info .three .venue-name {
+    font-family: "Fairplay Display", serif !important;
+    font-size: 1.2em !important; /* 14px / 16px = 0.875em (small text) */
+    font-weight: 300 !important;
+    color: #3a4d1d !important;
+    letter-spacing: 1px !important;
+    line-height: 2em;
+}
+
+/* Save the Date button styling */
+.card section.info .event-info .save-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.card section.info .event-info .save-date .btn-save-date {
+    background: transparent;
+    border: 1px solid #737373;
+    color: #737373 !important;
+    font-family: "Spartan", sans-serif;
+    font-size: 0.875em; /* 14px / 16px = 0.875em */
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card section.info .event-info .save-date .btn-save-date:hover {
+    background: #737373;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(115, 115, 115, 0.3);
 }
 
 

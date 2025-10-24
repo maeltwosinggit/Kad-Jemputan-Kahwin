@@ -24,7 +24,7 @@ $Venue_Address_Line2 = "15, Jalan 15/23, Seksyen 1";
 $Venue_Address_Line3 = "40200 Shah Alam, Selangor";
 
 // PARENTS NAMES
-$Parents_Male_1 = "Keluarga Roslee bin hanan";        // Groom's father
+$Parents_Male_1 = "Keluarga Roslee bin Hanan";        // Groom's father
 $Parents_Female_1 = "Keluarga Mohamed Shariefudin bin Alias"; // Groom's mother
 
 // DATABASE CONFIGURATION

@@ -119,7 +119,8 @@ if (mysqli_num_rows($query3) == 0) {
                         <p><?php echo $Parents_Female_1; ?></p>
                     </div>
                     <p>cordially invite</p>
-                    <p>Yang Berbahagia Tan Sri | Puan Sri | Dato’ Seri | Datin Seri | Dato’| Datin | Mr. | Mrs. | Miss</p>
+                    <p>Yang Berbahagia Tan Sri | Puan Sri | Dato’ Seri | Datin Seri | Dato’| Datin</p>
+                    <p>Mr. | Mrs. | Miss</p>
                     <p>to the wedding reception of our son and daughter</p>
                 </div>
                 <div class="two">
@@ -129,7 +130,7 @@ if (mysqli_num_rows($query3) == 0) {
                 </div>
                 <div class="three">
                     <p class="title">Venue</p>
-                    <p><?php echo $Venue_Address_Line1; ?></p>
+                    <p class="venue-name"><?php echo $Venue_Address_Line1; ?></p>
                     <p><?php echo $Venue_Address_Line2; ?></p>
                     <p><?php echo $Venue_Address_Line3; ?></p>
                 </div>
@@ -141,6 +142,11 @@ if (mysqli_num_rows($query3) == 0) {
                 <div class="five">
                     <p class="title">Time</p>
                     <p><?php echo $Wedding_Time; ?></p>
+                </div>
+                <div class="save-date">
+                    <button id="save-date-btn" class="btn-save-date">
+                        Save The Date
+                    </button>
                 </div>
             </div>
             <!-- Aturcara & Countdown Section -->

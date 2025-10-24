@@ -383,6 +383,7 @@ const toggleButtons = {
     'ucapan-btn': 'ucapan-menu',
     'contact-btn': 'contact-menu',
     'kehadiran-btn': 'rsvp-menu',
+    'save-date-btn': 'calendar-menu',
     'btn-hadir': 'success-menu'
     // Add other button-to-menu mappings here
 };
