@@ -111,7 +111,8 @@ if (mysqli_num_rows($query3) == 0) {
         <section class="info">
             <!-- <img src="./images/assalamualaikum-3.png" alt="" class="assalamualaikum reveal fade-bottom"> -->
             <div class="event-info reveal fade-bottom">
-                <div class="one">With Joy and Gratitude to Almighty God</p>
+                <div class="one">
+                    <p>With Joy and Gratitude to Almighty God</p>
                     <div class="parent">
                         <p><?php echo $Parents_Male_1; ?></p>
                         <p>&</p>
