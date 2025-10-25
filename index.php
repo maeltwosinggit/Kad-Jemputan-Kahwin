@@ -157,23 +157,23 @@ if (mysqli_num_rows($query3) == 0) {
                         <div class="hero-body">
                             <div class="campaign campaign-0" data-wedding-date="<?php echo $Wedding_Date_ISO; ?>">
                                 <div class="counter timer">
-                                    <span class="title">Menghitung hari</span>
+                                    <span class="title">Counting Days</span>
                                     <div class="counter-boxes">
                                         <div class="count-box">
                                             <h1 class="value day">0</h1>
-                                            <span>Hari</span>
+                                            <span>Days</span>
                                         </div>
                                         <div class="count-box">
                                             <h1 class="value hour">0</h1>
-                                            <span>Jam</span>
+                                            <span>Hours</span>
                                         </div>
                                         <div class="count-box">
                                             <h1 class="value minute">0</h1>
-                                            <span>Minit</span>
+                                            <span>Minutes</span>
                                         </div>
                                         <div class="count-box">
                                             <h1 class="value second">0</h1>
-                                            <span>Saat</span>
+                                            <span>Seconds</span>
                                         </div>
                                     </div>
                                 </div>

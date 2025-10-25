@@ -27,9 +27,30 @@ $Venue_Address_Line3 = "40200 Shah Alam, Selangor";
 $Parents_Male_1 = "Keluarga Roslee bin Hanan";        // Groom's father
 $Parents_Female_1 = "Keluarga Mohamed Shariefudin bin Alias"; // Groom's mother
 
+// ==============================================
 // DATABASE CONFIGURATION
-$servername = "127.0.0.1:3306";
-$username = "root";
-$password = "";
-$database = "kad_kahwin";
-?>
+// ==============================================
+// Uncomment the section you want to use:
+
+// LOCAL DEVELOPMENT (XAMPP/WAMP/MAMP)
+// $servername = "127.0.0.1:3306";
+// $username = "root";
+// $password = "";
+// $database = "kad_kahwin";
+
+// PRODUCTION HOSTING (InfinityFree) - UNCOMMENT FOR LIVE DEPLOYMENT
+$servername = "sql104.infinityfree.com";
+$username = "if0_12345678";
+$password = "your_actual_password";
+$database = "if0_40253573_your_database_name";
+
+
+// ==============================================
+// DEPLOYMENT INSTRUCTIONS
+// ==============================================
+/*
+TO SWITCH ENVIRONMENTS:
+
+FOR LOCAL DEVELOPMENT:
+- Keep LOCAL DEVELOPMENT section uncommented
+- Keep PRODUCTION HOSTING section commented with /* */
