@@ -184,22 +184,16 @@ if (mysqli_num_rows($query3) == 0) {
             </div>
             <!-- Aturcara -->
             <div class="aturcara reveal fade-bottom">
-                <p class="title">aturcara majlis</p>
-                <div class="one">
-                    <p>Kehadiran Tetamu</p>
-                    <p>11:30 Pagi</p>
-                </div>
-                <div class="two">
-                    <p>Ketibaan Pengantin</p>
-                    <p>1:00 Petang</p>
-                </div>
-                <div class="three">
-                    <p>Makan Beradab</p>
-                    <p>1:30 Petang</p>
-                </div>
-                <div class="four">
-                    <p>Majlis Bersurai</p>
-                    <p>4:00 Petang</p>
+                <h2 class="programme-title">PROGRAMME</h2>
+                <div class="programme-content">
+                    <div class="programme-item">
+                        <p class="event-name"><?php echo $Programme_Event1_Name; ?> :</p>
+                        <p class="event-time"><?php echo $Programme_Event1_Time; ?></p>
+                    </div>
+                    <div class="programme-item">
+                        <p class="event-name"><?php echo $Programme_Event2_Name; ?> :</p>
+                        <p class="event-time"><?php echo $Programme_Event2_Time; ?></p>
+                    </div>
                 </div>
             </div>
             <div class="ucapan reveal fade-bottom">
