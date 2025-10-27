@@ -196,7 +196,7 @@ if (mysqli_num_rows($query3) == 0) {
                     </div>
                 </div>
             </div>
-            <div class="ucapan reveal fade-bottom">
+            <!-- <div class="ucapan reveal fade-bottom">
                 <div class="container">
                     <img src="./images/ucapan-bg.png" alt="">
                     <div class="content">
@@ -209,8 +209,8 @@ if (mysqli_num_rows($query3) == 0) {
                             berkat ikatan ini.</p>
                     </div>
                 </div>
-            </div>
-            <img src="./images/divider.png" alt="" class="divider reveal fade-bottom">
+            </div> -->
+            <!-- <img src="./images/divider.png" alt="" class="divider reveal fade-bottom"> -->
             <div class="rsvp">
                 <h2 class="reveal fade-bottom">Ucapan</h2>
                 <div class="container-message reveal fade-bottom">

@@ -593,25 +593,25 @@ section {
     margin: 30px 0;
     z-index: 500;
     position: relative;
-    /* Blur background effect */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* Light transparent glass effect */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .card section.info .aturcara::before {
     content: '';
     position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: linear-gradient(135deg, rgba(240, 232, 215, 0.3), rgba(240, 232, 215, 0.1));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     border-radius: 25px;
     z-index: -1;
 }
@@ -647,18 +647,18 @@ section {
     text-align: center;
     gap: 8px;
     padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
 }
 
 .card section.info .aturcara .programme-item:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .card section.info .aturcara .programme-item .event-name {
