@@ -475,26 +475,52 @@ document.getElementById("form-ucapan").addEventListener("submit", function (even
         body: formData, // Attach the FormData object
     })
     .then(response => {
-        if (response.ok) {
-            return response.text(); // Process the response as text
+        // Debug: log the raw response
+        console.log('Raw response status:', response.status);
+        console.log('Raw response headers:', response.headers.get('content-type'));
+        
+        // Check if response is ok
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        // Get response text first to debug
+        return response.text().then(text => {
+            console.log('Raw response text:', text);
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                console.error('JSON parse error:', e);
+                console.error('Response text was:', text);
+                throw new Error("Response is not valid JSON: " + text.substring(0, 100));
+            }
+        });
+    })
+    .then(data => {
+        if (data && data.success) {
+            // Display the success message in the success-menu
+            const successMenu = document.getElementById("success-menu");
+            successMenu.innerHTML = "<div class='success-message'><i class='bx bx-check'></i><p>" + data.message + "</p></div>";
+            successMenu.classList.add("open"); // Open the success menu
+
+            // Close the ucapan menu after successful submission
+            closeMenu('ucapan-menu');
+
+            // Optionally reset the form
+            form.reset();
         } else {
-            throw new Error("Form submission failed"); // Handle errors
+            // Show error message
+            alert('Error: ' + (data ? data.message : 'Unknown error occurred'));
         }
     })
-    .then(result => {
-        // Display the success message in the success-menu
-        const successMenu = document.getElementById("success-menu");
-        successMenu.innerHTML = "<div class='success-message'><i class='bx bx-check'></i><p>Mesej anda berjaya dihantar!</p></div>";
-        successMenu.classList.add("open"); // Open the success menu
-
-        // Close the ucapan menu after successful submission
-        closeMenu('ucapan-menu');
-
-        // Optionally reset the form
-        form.reset();
-    })
     .catch(error => {
-        console.error("Error:", error); // Log any errors
+        console.error('Message submission error:', error);
+        // More specific error message
+        if (error.message.includes('JSON')) {
+            alert('Ucapan telah disimpan tetapi terdapat masalah teknikal. Sila semak dalam senarai ucapan untuk memastikan.');
+        } else {
+            alert('Terdapat masalah semasa menghantar ucapan. Sila cuba lagi.');
+        }
     });
 });
 

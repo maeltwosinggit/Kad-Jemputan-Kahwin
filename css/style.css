@@ -519,7 +519,7 @@ section {
     font-size: 1em; /* 18px / 16px = 1.125em (small heading) */
     font-weight: 700;
     margin-bottom: 20px;
-    font-family: 'cinzel decorative', serif !important;
+    font-family: 'Spartan', sans-serif !important;
     color: #0d3f18;
 }
 
@@ -636,9 +636,9 @@ section {
     z-index: 10;
     /* margin-top: 30px; */
     font-size: 1em; /* 18px / 16px = 1.125em (small heading) */
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 20px;
-    font-family: 'cinzel decorative', serif !important;
+    font-family: 'Spartan', sans-serif !important;
     color: #0d3f18;
 }
 
@@ -795,7 +795,7 @@ section {
     /* margin-top: 30px; */
     font-weight: 700;
     margin-bottom: 20px;
-    font-family: 'cinzel decorative', serif !important;
+    font-family: 'Spartan', sans-serif !important;
     color: #0d3f18;
 }
 
@@ -983,7 +983,7 @@ section {
 }
 
 .card section.info .branding .brand-logo .logo {
-    height: 50px;
+    height: 30px;
     width: auto;
     object-fit: contain;
     opacity: 0.3;
@@ -1002,7 +1002,7 @@ section {
     }
     
     .card section.info .branding .brand-logo .logo {
-        height: 50px;
+        height: 30px;
     }
 }
 

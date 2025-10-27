@@ -29,7 +29,7 @@ $Parents_Female_1 = "Keluarga Mohamed Shariefudin bin Alias"; // Groom's mother
 
 // PROGRAMME DETAILS
 $Programme_Event1_Name = "Lunch";
-$Programme_Event1_Time = "11:00 am - 5:00 pm";
+$Programme_Event1_Time = "11:00 am - 4:00 pm";
 $Programme_Event2_Name = "The Arrival of Bride & Groom";
 $Programme_Event2_Time = "12:30 pm";
 
