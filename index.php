@@ -211,6 +211,47 @@ if (mysqli_num_rows($query3) == 0) {
                 </div>
             </div> -->
             <!-- <img src="./images/divider.png" alt="" class="divider reveal fade-bottom"> -->
+            
+            <!-- Attendance Section -->
+            <div class="attendance reveal fade-bottom">
+                <h2 class="attendance-title">ATTENDANCE</h2>
+                <div class="attendance-stats">
+                    <?php
+                    // Get attendance counts from database
+                    $connection = mysqli_connect($servername, $username, $password, $database);
+                    
+                    if ($connection) {
+                        // Get attendance counts
+                        $query = mysqli_query($connection, "SELECT jumlah_kehadiran, jumlah_tidak_hadir FROM kehadiran WHERE id = 1");
+                        
+                        if ($query && mysqli_num_rows($query) > 0) {
+                            $row = mysqli_fetch_assoc($query);
+                            $attending = $row['jumlah_kehadiran'];
+                            $notAttending = $row['jumlah_tidak_hadir'];
+                        } else {
+                            $attending = 0;
+                            $notAttending = 0;
+                        }
+                        
+                        mysqli_close($connection);
+                    } else {
+                        $attending = 0;
+                        $notAttending = 0;
+                    }
+                    ?>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number"><?php echo $attending; ?></div>
+                        <div class="stat-label">Attending</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number"><?php echo $notAttending; ?></div>
+                        <div class="stat-label">Not Attending</div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Wishes Section -->
             <div class="wishes reveal fade-bottom">
                 <h2 class="wishes-title">WISHES</h2>

@@ -766,6 +766,93 @@ section {
 
 
 /*============================================================================================
+    # ATTENDANCE
+============================================================================================*/
+.card section.info .attendance {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    z-index: 500;
+}
+
+.card section.info .attendance .attendance-title {
+    font-family: 'Spartan', sans-serif !important;
+    font-size: 1em; /* 40px / 16px = 2.5em */
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #0d3f18;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+}
+
+.card section.info .attendance .attendance-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.card section.info .attendance .stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card section.info .attendance .stat-number {
+    font-family: 'Spartan', sans-serif;
+    font-size: 4em; /* 64px / 16px = 4em */
+    font-weight: 300;
+    color: #4A4A4A;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.card section.info .attendance .stat-label {
+    font-family: 'Spartan', sans-serif !important;
+    font-size: 1.125em; /* 18px / 16px = 1.125em */
+    color: #888888;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+/* Responsive adjustments for attendance */
+@media (max-width: 768px) {
+    .card section.info .attendance {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .card section.info .attendance .attendance-title {
+        font-size: 1em; /* 32px / 16px = 2em */
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+    }
+    
+    .card section.info .attendance .attendance-stats {
+        gap: 50px;
+    }
+    
+    .card section.info .attendance .stat-number {
+        font-size: 3em; /* 48px / 16px = 3em */
+    }
+    
+    .card section.info .attendance .stat-label {
+        font-size: 1em; /* 16px / 16px = 1em */
+    }
+}
+
+
+/*============================================================================================
     # WISHES
 ============================================================================================*/
 .card section.info .wishes {
