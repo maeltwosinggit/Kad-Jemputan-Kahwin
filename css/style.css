@@ -507,14 +507,20 @@ section {
 }
 
 .card section.info .countdown .hero .hero-body .counter .title {
-    color: #0d3f18;
-    font-family: "Spartan", sans-serif;
-    font-size: 0.875em; /* 14px / 16px = 0.875em */
-    font-weight: 400;
+    /* color: #0d3f18; */
+    /* font-family: "Cinzel Decorative", serif; */
+    /* font-size: 0.875em; 14px / 16px = 0.875em */
+    /* font-weight: 400; */
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     text-align: center;
+    /* margin-top: 30px; */
+    font-size: 1em; /* 18px / 16px = 1.125em (small heading) */
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'cinzel decorative', serif !important;
+    color: #0d3f18;
 }
 
 .card section.info .countdown .hero .hero-body .counter .counter-boxes {
@@ -617,17 +623,23 @@ section {
 }
 
 .card section.info .aturcara .programme-title {
-    font-family: "Spartan", sans-serif;
-    color: #0d3f18;
+    /* font-family: "Cinzel Decorative", serif; */
+    /* color: #0d3f18; */
     text-align: center;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 400;
-    font-size: 0.875em; /* 14px / 16px = 0.875em */
+    /* font-weight: 400; */
+    /* font-size: 0.875em; 14px / 16px = 0.875em */
     margin: 0 0 30px 0;
     padding: 0;
     position: relative;
     z-index: 10;
+    /* margin-top: 30px; */
+    font-size: 1em; /* 18px / 16px = 1.125em (small heading) */
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'cinzel decorative', serif !important;
+    color: #0d3f18;
 }
 
 .card section.info .aturcara .programme-content {
@@ -754,9 +766,9 @@ section {
 
 
 /*============================================================================================
-    # RSVP
+    # WISHES
 ============================================================================================*/
-.card section.info .rsvp {
+.card section.info .wishes {
     position: relative;
     width: 100%;
     display: flex;
@@ -766,131 +778,232 @@ section {
     margin-top: 30px;
     margin-bottom: 50px;
     z-index: 500;
+    padding: 40px 20px;
+    /* background: linear-gradient(135deg, #F5E6A3 0%, #E8D372 100%); */
+    /* border-radius: 20px; */
 }
 
-.card section.info .rsvp h2 {
+.card section.info .wishes .wishes-title {
+    /* font-family: 'Cinzel Decorative', serif; */
+    /* font-size: 0.8125em; 40px / 16px = 2.5em */
+    /* font-weight: 400; */
     text-transform: uppercase;
-    color: #111111;
+    /* color: #0d3f18; Rich brown color matching reference */
     text-align: center;
     margin-bottom: 30px;
+    letter-spacing: 3px;
+    /* margin-top: 30px; */
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'cinzel decorative', serif !important;
+    color: #0d3f18;
 }
 
-.card section.info .rsvp .container-message {
-    width: 95%;
-    height: 450px;
-    overflow-y: auto;
-    padding: 0px 16px;
-    border-top: 1px solid wheat;
-    border-bottom: 1px solid wheat;
-}
-
-.card section.info .rsvp .container-message .content {
-    overflow: hidden;
+.card section.info .wishes .wishes-container {
     width: 100%;
-    white-space: normal;
-    text-overflow: ellipsis;
-    border-bottom: 1px solid #DDDDDD;
+    max-width: 400px;
+    min-height: 200px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    overflow-y: auto;
+    max-height: 300px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card section.info .rsvp .container-message .content p {
-    font-size: 1em; /* 16px / 16px = 1em (base size) */
-    font-family: 'Cormorant Garamond', serif;
-    margin: 0;
+.card section.info .wishes .wish-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.card section.info .wishes .wish-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.card section.info .wishes .wish-item .wish-message {
+    font-family: 'Crimson Text', serif;
+    font-size: 1em; /* 16px / 16px = 1em */
+    color: #4A4A4A;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    font-style: italic;
     text-align: left;
 }
 
-.card section.info .rsvp .container-message .content p.name {
-    color: darkcyan;
-    margin-top: 10px;
+.card section.info .wishes .wish-item .wish-author {
+    font-family: 'Spartan', sans-serif;
+    font-size: 0.9em; /* 14.4px / 16px = 0.9em */
+    font-weight: 600;
+    color: #0d3f18;
+    text-align: right;
+    margin: 0;
 }
 
-.card section.info .rsvp .container-message .content p.name::before {
-    content: '--';
-    color: grey;
-    font-size: 0.9em;
-    margin-right: 8px;
+.card section.info .wishes .no-wishes-placeholder {
+    text-align: center;
+    padding: 40px 20px;
 }
 
-.card section.info .rsvp .container-message .content p.name::after {
-    content: '--';
-    color: grey;
-    font-size: 1em; /* 16px / 16px = 1em (base size) */
-    margin-left: 8px;
-}
-
-.card section.info .rsvp .container-message .content p.message {
-    color: darkgrey;
-    margin-top: 10px;
+.card section.info .wishes .no-wishes-placeholder p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.25em; /* 20px / 16px = 1.25em */
+    color: #0d3f18;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.card section.info .rsvp .container-message .content-empty {
+.card section.info .wishes .no-wishes-placeholder .sub-text {
+    font-family: 'Spartan', sans-serif;
+    font-size: 0.9em; /* 14.4px / 16px = 0.9em */
+    color: #0d3f18;
+    font-style: italic;
+    font-weight: 400 !important;
+}
+
+.card section.info .wishes .wishes-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card section.info .wishes .wishes-container::-webkit-scrollbar-track {
+    background: rgba(139, 69, 19, 0.1);
+    border-radius: 10px;
+}
+
+.card section.info .wishes .wishes-container::-webkit-scrollbar-thumb {
+    background: rgba(139, 69, 19, 0.4);
+    border-radius: 10px;
+}
+
+.card section.info .wishes .wishes-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 69, 19, 0.6);
+}
+
+.card section.info .wishes .wishes-buttons {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.card section.info .wishes .wish-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    gap: 8px;
+    font-family: 'Spartan', sans-serif;
+    font-size: 0.9em; /* 14.4px / 16px = 0.9em */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    flex: 1;
+    text-transform: none;
 }
 
-.card section.info .rsvp .container-message .content-empty p.empty-message {
-    color: darkgray;
+.card section.info .wishes .wish-btn.primary {
+    background: #0d3f18;
+    color: white;
+    border: 2px solid #0d3f18;
+}
+
+
+.card section.info .wishes .wish-btn.secondary {
+    background: #F5F5F5;
+    color: #0d3f18;
+    border: 2px solid #D0D0D0;
+}
+
+.card section.info .wishes .wish-btn .bx {
+    font-size: 1em; /* 16px / 16px = 1em */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card section.info .wishes {
+        padding: 30px 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    .card section.info .wishes .wishes-title {
+        font-size: 1.5em; /* 32px / 16px = 2em */
+        letter-spacing: 2px;
+    }
+    
+    .card section.info .wishes .wishes-container {
+        max-width: 100%;
+    }
+    
+    .card section.info .wishes .wishes-buttons {
+        max-width: 100%;
+        gap: 8px;
+    }
+    
+    .card section.info .wishes .wish-btn {
+        padding: 10px 16px;
+        font-size: 0.8em; /* Slightly smaller text on mobile */
+    }
+}
+
+/*============================================================================================
+    # BRANDING
+============================================================================================*/
+.card section.info .branding {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    z-index: 500;
+}
+
+.card section.info .branding .created-by {
+    font-family: 'Spartan', sans-serif;
+    font-size: 12px; /* 16px / 16px = 1em */
+    color: #888888;
+    margin-bottom: 8px;
+    /* font-style: italic; */
     text-align: center;
 }
 
-
-.card section.info .rsvp .container-message::-webkit-scrollbar {
-    width: 2px;
-    background-color: #ADD8E6;
-}
-
-.card section.info .rsvp .container-message::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 6px rgb(114, 243, 243);
-    -webkit-box-shadow: inset 0 0 6px rgb(1, 66, 66);
-    background-color: navy;
-    border-radius: 12px;
-}
-
-.card section.info .rsvp .beri-ucapan-button {
-    width: 100%;
+.card section.info .branding .brand-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    gap: 5px;
 }
 
-.card section.info .rsvp .beri-ucapan-button button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 0px;
-    width: 45%;
-    border-radius: 10px;
-    border: 1px solid grey;
-    /* background: linear-gradient(90deg, #E5BDF6, #D8DEDE) !important; */
-    /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
-    background: #F8F4FF;
-    cursor: pointer;
-    gap: 10px;
+.card section.info .branding .brand-logo .logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
 }
 
-.card section.info .rsvp .beri-ucapan-button button:hover {
-    /* background: linear-gradient(90deg, #E5BDF6, #D8DEDE) !important; */
-    /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
-    background: #F8F4FF;
-    opacity: 0.8;
+.card section.info .branding .brand-logo .logo:hover {
+    opacity: 0.5;
 }
 
-.card section.info .rsvp .beri-ucapan-button button .bx {
-    font-size: 1em; /* 16px / 16px = 1em (base size) */
-    color: darkcyan;
-}
-
-.card section.info .rsvp .beri-ucapan-button button span {
-    font-size: 0.875em; /* 14px / 16px = 0.875em (small text) */
-    font-weight: 500;
+/* Responsive adjustments for branding */
+@media (max-width: 768px) {
+    .card section.info .branding {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .card section.info .branding .brand-logo .logo {
+        height: 50px;
+    }
 }
 
 
@@ -973,7 +1086,7 @@ section {
 .toggle-menu .calendar,
 .toggle-menu .location,
 .toggle-menu .music,
-.toggle-menu .rsvp,
+.toggle-menu .wishes,
 .toggle-menu .contact,
 .toggle-menu .ucapan-tetamu {
     display: flex;
@@ -1096,7 +1209,7 @@ section {
     width: 100%;
 }
 
-.toggle-menu .rsvp .button {
+.toggle-menu .wishes .button {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -1105,7 +1218,7 @@ section {
     margin-top: 10px;
 }
 
-.toggle-menu .rsvp .button button {
+.toggle-menu .wishes .button button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1118,20 +1231,20 @@ section {
     background: #F8F4FF;
 }
 
-.toggle-menu .rsvp .button button:hover {
+.toggle-menu .wishes .button button:hover {
     background: #F8F4FF;
     opacity: 0.9;
 }
 
-.toggle-menu .rsvp .button button i {
+.toggle-menu .wishes .button button i {
     font-size: 24px;
 }
 
-.toggle-menu .rsvp .button #btn-hadir i {
+.toggle-menu .wishes .button #btn-hadir i {
     color: green;
 }
 
-.toggle-menu .rsvp .button #btn-tidak-hadir i {
+.toggle-menu .wishes .button #btn-tidak-hadir i {
     color: red;
 }
 

@@ -211,57 +211,53 @@ if (mysqli_num_rows($query3) == 0) {
                 </div>
             </div> -->
             <!-- <img src="./images/divider.png" alt="" class="divider reveal fade-bottom"> -->
-            <div class="rsvp">
-                <h2 class="reveal fade-bottom">Ucapan</h2>
-                <div class="container-message reveal fade-bottom">
+            <!-- Wishes Section -->
+            <div class="wishes reveal fade-bottom">
+                <h2 class="wishes-title">WISHES</h2>
+                <div class="wishes-container">
                     <?php
-                    $query = mysqli_query($connection, "SELECT * FROM ucapan_kahwin");
+                    // Reconnect to database for wishes
+                    $connection = mysqli_connect($servername, $username, $password, $database);
+                    $query = mysqli_query($connection, "SELECT * FROM ucapan_kahwin ORDER BY id DESC LIMIT 6");
 
-                    if ($query) {
-                        $hasData = false; // Flag to indicate if there is data
-
+                    if ($query && mysqli_num_rows($query) > 0) {
                         while ($row = mysqli_fetch_assoc($query)) {
-                            $hasData = true;
-                            $id = $row["id"];
                             $name = $row["nama_tetamu"];
                             $message = $row["ucapan_tetamu"];
-
-                            echo '<div class="content">';
-                            echo '<p class="name">' . $name . '</p>';
-                            echo '<p class="message">' . $message . '</p>';
-                            echo '</div>';
-                        }
-
-                        if (!$hasData) { // If there's no data, display dummy content
-                            echo '<div class="content-empty">';
-                            echo '<p class="empty-message">Tiada ucapan lagi. Silalah beri ucapan kepada dua mempelai ini!</p>';
+                            
+                            echo '<div class="wish-item">';
+                            echo '<p class="wish-message">"' . htmlspecialchars($message) . '"</p>';
+                            echo '<p class="wish-author">— ' . htmlspecialchars($name) . '</p>';
                             echo '</div>';
                         }
                     } else {
-                        // Handle error with the query
-                        echo "Error querying the database: " . mysqli_error($connection);
+                        // Sweet placeholder when no wishes exist
+                        echo '<div class="no-wishes-placeholder">';
+                        echo '<p>✨ No wishes yet! ✨</p>';
+                        echo '<p class="sub-text">Be the first to share your beautiful wishes for the happy couple</p>';
+                        echo '</div>';
                     }
-
+                    
                     mysqli_close($connection);
-
                     ?>
-                    <!-- <div class="content">
-                        <p class="name">Anonymous</p>
-                        <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor velit
-                            in tincidunt vehicula. Nam fermentum
-                            finibus
-                            purus, id vulputate nibh rhoncus vel.</p>
-                    </div> -->
                 </div>
-                <div class="beri-ucapan-button reveal fade-bottom">
-                    <button id="kehadiran-btn">
-                        <i class='bx bxs-check-square'></i>
-                        <span>Sahkan Kehadiran</span>
+                <div class="wishes-buttons">
+                    <button id="rsvp-wish-btn" class="wish-btn primary">
+                        <i class='bx bx-check-circle'></i>
+                        <span>RSVP NOW</span>
                     </button>
-                    <button id="ucapan-btn">
-                        <i class='bx bxs-pen'></i>
-                        <span>Berikan Ucapan</span>
+                    <button id="write-message-btn" class="wish-btn secondary">
+                        <i class='bx bx-edit-alt'></i>
+                        <span>WRITE A MESSAGE</span>
                     </button>
+                </div>
+            </div>
+            
+            <!-- Branding Section -->
+            <div class="branding reveal fade-bottom">
+                <p class="created-by">Created by</p>
+                <div class="brand-logo">
+                    <img src="./images/Fotomovement.png" alt="Fotomovement" class="logo">
                 </div>
             </div>
         </section>

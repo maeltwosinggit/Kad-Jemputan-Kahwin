@@ -384,7 +384,9 @@ const toggleButtons = {
     'contact-btn': 'contact-menu',
     'kehadiran-btn': 'rsvp-menu',
     'save-date-btn': 'calendar-menu',
-    'btn-hadir': 'success-menu'
+    'btn-hadir': 'success-menu',
+    'rsvp-wish-btn': 'rsvp-menu',
+    'write-message-btn': 'ucapan-menu'
     // Add other button-to-menu mappings here
 };
 
@@ -563,6 +565,63 @@ function incrementCount(endpoint, successMessage, iconClass, closeMenuId) {
         alert("Error processing the request.");
     });
 }
+
+
+/** =====================================================
+ *  Wishes Section Button Functionality
+  ======================================================= */
+
+// Handle wishes section RSVP button
+document.addEventListener('DOMContentLoaded', function() {
+    const rsvpWishBtn = document.getElementById('rsvp-wish-btn');
+    const writeMessageBtn = document.getElementById('write-message-btn');
+    
+    // RSVP NOW button - opens RSVP menu
+    if (rsvpWishBtn) {
+        rsvpWishBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Close all menus first
+            closeAllMenus();
+            
+            // Open RSVP menu
+            const rsvpMenu = document.getElementById('rsvp-menu');
+            if (rsvpMenu) {
+                rsvpMenu.classList.add('open');
+            }
+        });
+    }
+    
+    // WRITE A MESSAGE button - opens ucapan (message) menu
+    if (writeMessageBtn) {
+        writeMessageBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Close all menus first
+            closeAllMenus();
+            
+            // Open ucapan (message) menu
+            const ucapanMenu = document.getElementById('ucapan-menu');
+            if (ucapanMenu) {
+                ucapanMenu.classList.add('open');
+            }
+        });
+    }
+});
 
 
 /** =====================================================
