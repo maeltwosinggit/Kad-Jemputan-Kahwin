@@ -1,0 +1,43 @@
+# Database Configuration (Production credentials)
+db_config.php
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Documentation files (optional)
+ENVIRONMENT_SWITCHING.md
+NAME_CONFIGURATION_GUIDE.md
+DEPLOYMENT_CHECKLIST.md
+DEPLOYMENT_GUIDE.md
+SECURITY_STRATEGY.md
+
+# Backup files
+backup_database.bat
+backups/
+*.sql
+*.zip
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Personal notes
+notes.txt
+todo.txt

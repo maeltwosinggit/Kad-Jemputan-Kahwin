@@ -28,29 +28,25 @@ $Parents_Male_1 = "Keluarga Roslee bin Hanan";        // Groom's father
 $Parents_Female_1 = "Keluarga Mohamed Shariefudin bin Alias"; // Groom's mother
 
 // ==============================================
-// DATABASE CONFIGURATION
+// SECURE DATABASE CONFIGURATION
 // ==============================================
-// Uncomment the section you want to use:
 
-// LOCAL DEVELOPMENT (XAMPP/WAMP/MAMP)
-// $servername = "127.0.0.1:3306";
-// $username = "root";
-// $password = "";
-// $database = "kad_kahwin";
+// Detect environment automatically
+$isLocal = ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_NAME'] === '127.0.0.1' || strpos($_SERVER['SERVER_NAME'], '.local') !== false);
 
-// PRODUCTION HOSTING (InfinityFree) - UNCOMMENT FOR LIVE DEPLOYMENT
-$servername = "sql104.infinityfree.com";
-$username = "if0_12345678";
-$password = "your_actual_password";
-$database = "if0_40253573_your_database_name";
+if ($isLocal) {
+    // LOCAL DEVELOPMENT
+    $servername = "127.0.0.1:3306";
+    $username = "root";
+    $password = "";
+    $database = "kad_kahwin";
+} else {
+    // PRODUCTION - Load from external config file
+    if (file_exists('db_config.php')) {
+        include 'db_config.php';
+    } else {
+        // Fallback - you'll create db_config.php manually on production server
+        die('Database configuration file not found. Please create db_config.php on the server.');
+    }
+}
 
-
-// ==============================================
-// DEPLOYMENT INSTRUCTIONS
-// ==============================================
-/*
-TO SWITCH ENVIRONMENTS:
-
-FOR LOCAL DEVELOPMENT:
-- Keep LOCAL DEVELOPMENT section uncommented
-- Keep PRODUCTION HOSTING section commented with /* */
