@@ -1,4 +1,3 @@
-<!-- Connect DB -->
 <?php
 // Load configuration
 include 'config.php';
@@ -20,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Validate input
     if (empty($_POST['name']) || empty($_POST['message'])) {
-        echo json_encode(['success' => false, 'message' => 'Nama dan ucapan diperlukan.']);
+        echo json_encode(['success' => false, 'message' => 'Name and message are required.']);
         mysqli_close($connection);
         exit();
     }
@@ -33,9 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "INSERT INTO ucapan_kahwin (nama_tetamu, ucapan_tetamu) VALUES ('$name', '$message')";
 
     if (mysqli_query($connection, $query)) {
-        echo json_encode(['success' => true, 'message' => 'Terima kasih! Ucapan anda telah berjaya dihantar.']);
+        echo json_encode(['success' => true, 'message' => 'Thank you! Your wishes have been sent successfully.']);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Terjadi kesilapan: ' . mysqli_error($connection)]);
+        echo json_encode(['success' => false, 'message' => 'Error saving data: ' . mysqli_error($connection)]);
     }
 } else {
     header('Content-Type: application/json');

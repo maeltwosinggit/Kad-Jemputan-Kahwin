@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate data
     if (empty($nama) || $jumlah_pax < 1 || empty($hubungan) || !in_array($status, ['hadir', 'tidak_hadir'])) {
         ob_clean();
-        echo json_encode(['success' => false, 'message' => 'Sila isi semua maklumat dengan betul']);
+        echo json_encode(['success' => false, 'message' => 'Please fill in all the information correctly']);
         exit;
     }
     
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if (mysqli_num_rows($check_result) > 0) {
         ob_clean();
-        echo json_encode(['success' => false, 'message' => 'RSVP dengan nama dan hubungan yang sama sudah wujud. Jika anda orang yang berbeza, sila tulis nama lengkap atau hubungan yang lebih spesifik.']);
+        echo json_encode(['success' => false, 'message' => 'RSVP with the same name and relationship already exists. If you are a different person, please write the full name or a more specific relationship.']);
         exit;
     }
     
@@ -62,13 +62,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         echo json_encode([
             'success' => true, 
-            'message' => "Terima kasih $nama! $status_text anda untuk $jumlah_pax orang telah disahkan."
+            'message' => "Thank you, your attendance for $jumlah_pax guests has been confirmed."
         ]);
     } else {
         // Clean output buffer to ensure clean JSON
         ob_clean();
         
-        echo json_encode(['success' => false, 'message' => 'Ralat semasa menyimpan data: ' . mysqli_error($connection)]);
+        echo json_encode(['success' => false, 'message' => 'Error saving data: ' . mysqli_error($connection)]);
     }
     
     mysqli_close($connection);

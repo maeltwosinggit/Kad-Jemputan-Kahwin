@@ -154,8 +154,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             .then(data => {
                 if (data && data.success) {
                     // Show success message
-                    const icon = status === 'hadir' ? 'bx bxs-wink-smile' : 'bx bxs-sad';
-                    displaySuccessMessage(data.message, icon, 'rsvp-menu');
+                    // const icon = status === 'hadir' ? 'bx bxs-wink-smile' : 'bx bxs-sad';
+                    displaySuccessMessage(data.message, 'rsvp-menu');
                     
                     // Reset form
                     rsvpForm.reset();
@@ -272,6 +272,20 @@ function openWaze() {
     window.open(wazeUrl, "_blank");  // Open in a new tab
 }
 
+// New functions that use venue address from config
+function openGoogleMapsWithAddress(address) {
+    const decodedAddress = decodeURIComponent(address);
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(decodedAddress)}&travelmode=driving`;
+    window.open(googleMapsUrl, "_blank");  // Open in a new tab
+}
+
+function openWazeWithAddress(address) {
+    const decodedAddress = decodeURIComponent(address);
+    // For Waze, we use the search URL format which works better with addresses
+    const wazeUrl = `https://www.waze.com/ul?q=${encodeURIComponent(decodedAddress)}&navigate=yes`;
+    window.open(wazeUrl, "_blank");  // Open in a new tab
+}
+
 
 
 
@@ -280,7 +294,7 @@ function openWaze() {
     Contact
   ======================================================= */
 function openWhatsApp(phoneNumber) {
-    const message = "https://kad-jemputan-kahwin.vercel.app/\n\nHello, maaf menggangu. Saya ingin bertanyakan sesuatu berkenaan majlis perkahwinan ini.";
+    const message = "";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");  // Opens WhatsApp in a new tab
 }
@@ -530,7 +544,7 @@ document.getElementById("form-ucapan").addEventListener("submit", function (even
 /** =====================================================
  *  Display Success Message Function
   ======================================================= */
-function displaySuccessMessage(message, iconClass, closeMenuId) {
+function displaySuccessMessage(message, closeMenuId) {
     // Close the specified menu first
     if (closeMenuId) {
         const closeMenu = document.getElementById(closeMenuId);
@@ -542,7 +556,7 @@ function displaySuccessMessage(message, iconClass, closeMenuId) {
     // Display the success message
     const successMenu = document.getElementById("success-menu");
     if (successMenu) {
-        successMenu.innerHTML = `<div class='success-message'><i class='${iconClass}'></i><p>${message}</p></div>`;
+        successMenu.innerHTML = `<div class='success-message'><p>${message}</p></div>`;
         successMenu.classList.add("open");
         
         // Auto-close after 3 seconds

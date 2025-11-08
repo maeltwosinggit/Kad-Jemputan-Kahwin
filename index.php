@@ -104,12 +104,13 @@ if (mysqli_num_rows($query3) == 0) {
                     <span>|</span>
                     <span><?php echo $Wedding_Date_Full; ?></span>
                 </p>
+                <h4 class="fade-top-3">#amiracleforamirul</h4>
             </div>
         </section>
 
         <!-- Event Info Section -->
         <section class="info">
-            <!-- <img src="./images/assalamualaikum-3.png" alt="" class="assalamualaikum reveal fade-bottom"> -->
+            <img src="./images/bismillah.png" alt="" class="assalamualaikum reveal fade-bottom">
             <div class="event-info reveal fade-bottom">
                 <div class="one">
                     <p>With Joy and Gratitude to Almighty God</p>
@@ -142,6 +143,10 @@ if (mysqli_num_rows($query3) == 0) {
                 <div class="five">
                     <p class="title">Time</p>
                     <p><?php echo $Wedding_Time; ?></p>
+                </div>
+                <div class="six">
+                    <p class="title">Dress Code</p>
+                    <p><?php echo $Wedding_Dress_Code; ?></p>
                 </div>
                 <div class="save-date">
                     <button id="save-date-btn" class="btn-save-date">
@@ -195,6 +200,10 @@ if (mysqli_num_rows($query3) == 0) {
                         <p class="event-time"><?php echo $Programme_Event2_Time; ?></p>
                     </div>
                 </div>
+            </div>
+            <!-- Doa -->
+            <div class="doa-info reveal fade-bottom">
+                <img src="./images/Doa.png" alt="" class="doa-info reveal fade-bottom">
             </div>
             <!-- <div class="ucapan reveal fade-bottom">
                 <div class="container">
@@ -293,7 +302,11 @@ if (mysqli_num_rows($query3) == 0) {
                     </button>
                 </div>
             </div>
-            
+            <!-- Ucapan  -->
+            <div class="thanks-info reveal fade-bottom">
+                <img src="./images/ThanksSpeech.png" alt="" class="thanks-info reveal fade-bottom">
+            </div>
+
             <!-- Branding Section -->
             <div class="branding reveal fade-bottom">
                 <p class="created-by">Created by</p>
@@ -339,16 +352,16 @@ if (mysqli_num_rows($query3) == 0) {
 
     <div id="location-menu" class="toggle-menu">
         <div class="location">
-            <h1>Lokasi</h1>
-            <p>10A Jalan Seri Ampang 2</p>
-            <p>Kampung Pisang</p>
-            <p>47300 Subang, Selangor</p>
-            <div class="button" onclick="openGoogleMaps()">
-                <button class="google">
+            <h1>Location</h1>
+            <p><?php echo $Venue_Address_Line1; ?></p>
+            <p><?php echo $Venue_Address_Line2; ?></p>
+            <p><?php echo $Venue_Address_Line3; ?></p>
+            <div class="button">
+                <button class="google" onclick="openGoogleMapsWithAddress('<?php echo urlencode($Venue_Address_Line1 . ', ' . $Venue_Address_Line2 . ', ' . $Venue_Address_Line3); ?>')">
                     <i class='bx bxl-google'></i>
                     <span>Maps</span>
                 </button>
-                <button class="waze" onclick="openWaze()">
+                <button class="waze" onclick="openWazeWithAddress('<?php echo urlencode($Venue_Address_Line1 . ', ' . $Venue_Address_Line2 . ', ' . $Venue_Address_Line3); ?>')">
                     <i class="fa-brands fa-waze"></i>
                     <span>Waze</span>
                 </button>
@@ -358,41 +371,41 @@ if (mysqli_num_rows($query3) == 0) {
 
     <div id="music-menu" class="toggle-menu">
         <div class="music">
-            <h1>Lagu</h1>
-            <p>Beautiful in White x Canon in D</p>
-            <p>(Piano Cover by Riyandi Kusuma)</p>
+            <h1>Music</h1>
+            <p>Billie Eilish - Ocean Eyes</p>
+            <!-- <p>(Piano Cover by Riyandi Kusuma)</p> -->
             <audio id="audio-player" controls autoplay loop>
-                <source type="audio/mp3" src="./music/Beautiful in White x Canon in D (Piano Cover by Riyandi Kusuma).mp3">
+                <source type="audio/mp3" src="./music/Billie Eilish - ocean eyes.mp3">
             </audio>
         </div>
     </div>
 
     <div id="rsvp-menu" class="toggle-menu">
         <div class="rsvp">
-            <h1>RSVP - Sahkan Kehadiran</h1>
+            <h1>RSVP</h1>
             <form id="form-rsvp" class="form-rsvp" action="process_rsvp.php" method="POST">
-                <label for="rsvp-nama">Nama Anda</label>
-                <input type="text" name="nama" id="rsvp-nama" placeholder="Nama Penuh" required>
+                <label for="rsvp-nama">Your Name</label>
+                <input type="text" name="nama" id="rsvp-nama" placeholder="Full Name" required>
 
-                <label for="rsvp-pax">Jumlah Pax</label>
-                <input type="number" name="jumlah_pax" id="rsvp-pax" placeholder="Berapa orang?" min="1" max="20" required>
+                <label for="rsvp-pax">Total Pax</label>
+                <input type="number" name="jumlah_pax" id="rsvp-pax" placeholder="How many people?" min="1" max="20" required>
 
-                <label for="rsvp-hubungan">Hubungan dengan Pengantin</label>
-                <input type="text" name="hubungan" id="rsvp-hubungan" placeholder="Cth: Kawan, Keluarga, Rakan Kerja" required>
+                <label for="rsvp-hubungan">Relationship with the Bride/Groom</label>
+                <input type="text" name="hubungan" id="rsvp-hubungan" placeholder="E.g: Friend, Family, Colleague" required>
 
                 <div class="button">
                     <button type="submit" name="status" value="hadir" class="btn-hadir">
                         <i class='bx bx-check'></i>
-                        <span>Hadir</span>
+                        <span>Count Me In!</span>
                     </button>
                     <button type="submit" name="status" value="tidak_hadir" class="btn-tidak-hadir">
                         <i class='bx bx-x'></i>
-                        <span>Tidak Hadir</span>
+                        <span>Sorry, Can't Make It</span>
                     </button>
-                    <button type="button" class="tutup">
+                    <!-- <button type="button" class="tutup">
                         <i class='bx bx-x'></i>
-                        <span>Tutup</span>
-                    </button>
+                        <span>Close</span>
+                    </button> -->
                 </div>
             </form>
         </div>
@@ -400,45 +413,58 @@ if (mysqli_num_rows($query3) == 0) {
 
     <div id="contact-menu" class="toggle-menu">
         <div class="contact">
-            <h1>Hubungi</h1>
+            <h1>Contact Persons</h1>
             <div class="content">
                 <div class="person">
                     <div class="first-section">
                         <i class='bx bxs-user-circle'></i>
                         <div class="name">
-                            <span>Ali</span>
-                            <span>Bapa Pengantin Lelaki</span>
+                            <span>Mr Roslee</span>
+                            <!-- <span>Groom's Father</span> -->
                         </div>
                     </div>
                     <div class="second-section">
-                        <button onclick="makePhoneCall('+60123456789')"><i class='bx bx-phone'></i></button>
-                        <button onclick="openWhatsApp('+60123456789')"><i class='bx bxl-whatsapp'></i></button>
+                        <button onclick="makePhoneCall('+60193219794')"><i class='bx bx-phone'></i></button>
+                        <button onclick="openWhatsApp('+60193219794')"><i class='bx bxl-whatsapp'></i></button>
                     </div>
                 </div>
                 <div class="person">
                     <div class="first-section">
                         <i class='bx bxs-user-circle'></i>
                         <div class="name">
-                            <span>Miya Kasim</span>
-                            <span>Ibu Pengantin Lelaki</span>
+                            <span>Amirul (Along)</span>
+                            <!-- <span>Along</span> -->
                         </div>
                     </div>
                     <div class="second-section">
-                        <button onclick="makePhoneCall('+60123456789')"><i class='bx bx-phone'></i></button>
-                        <button onclick="openWhatsApp('+60123456789')"><i class='bx bxl-whatsapp'></i></button>
+                        <button onclick="makePhoneCall('+60186626786')"><i class='bx bx-phone'></i></button>
+                        <button onclick="openWhatsApp('+60186626786')"><i class='bx bxl-whatsapp'></i></button>
                     </div>
                 </div>
                 <div class="person">
                     <div class="first-section">
                         <i class='bx bxs-user-circle'></i>
                         <div class="name">
-                            <span>Xavier Hunter</span>
-                            <span>Adik Pengantin Lelaki</span>
+                            <span>Rashif (Angah)</span>
+                            <!-- <span>Angah</span> -->
                         </div>
                     </div>
                     <div class="second-section">
-                        <button onclick="makePhoneCall('+60123456789')"><i class='bx bx-phone'></i></button>
-                        <button onclick="openWhatsApp('+60123456789')"><i class='bx bxl-whatsapp'></i></button>
+                        <button onclick="makePhoneCall('+60193609094')"><i class='bx bx-phone'></i></button>
+                        <button onclick="openWhatsApp('+60193609094')"><i class='bx bxl-whatsapp'></i></button>
+                    </div>
+                </div>
+                <div class="person">
+                    <div class="first-section">
+                        <i class='bx bxs-user-circle'></i>
+                        <div class="name">
+                            <span>Rahimy (Amy)</span>
+                            <!-- <span>Amy> -->
+                        </div>
+                    </div>
+                    <div class="second-section">
+                        <button onclick="makePhoneCall('+60166050181')"><i class='bx bx-phone'></i></button>
+                        <button onclick="openWhatsApp('+60166050181')"><i class='bx bxl-whatsapp'></i></button>
                     </div>
                 </div>
             </div>
@@ -447,22 +473,22 @@ if (mysqli_num_rows($query3) == 0) {
 
     <div id="ucapan-menu" class="toggle-menu">
         <div class="ucapan-tetamu">
-            <h1>Sampaikan Ucapan</h1>
+            <h1>Send your wishes</h1>
             <form id="form-ucapan" class="form-ucapan" action="insert_message.php" method="POST">
-                <label for="name">Nama Anda</label>
-                <input type="text" name="name" placeholder="Uzumaki Naruto" required>
+                <label for="name">Your Name</label>
+                <input type="text" name="name" placeholder="Your Name..." required>
 
-                <label for="ucapan">Ucapan</label>
-                <textarea name="message" id="ucapan" cols="30" rows="10" placeholder="Selemat pengantin baru..." required></textarea>
+                <label for="ucapan">Message</label>
+                <textarea name="message" id="ucapan" cols="30" rows="10" placeholder="Congratulations on your wedding! Wishing you a lifetime of love and happiness..." required></textarea>
 
                 <div class="button">
                     <button type="submit" class="hantar" id="hantar">
                         <i class='bx bxs-paper-plane'></i>
-                        <span>Hantar</span>
+                        <span>Send</span>
                     </button>
                     <button class="tutup">
                         <i class='bx bx-x'></i>
-                        <span>Tutup</span>
+                        <span>Close</span>
                     </button>
                 </div>
             </form>

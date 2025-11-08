@@ -302,6 +302,15 @@ section {
     color: #893941;
 }
 
+.card section.intro .content h4 {
+    margin-top: 80px;
+    margin-bottom: 30px;
+    font-family: "Spartan", sans-serif;
+    font-size: 1em; /* 48px / 16px = 3em (large heading) */
+    font-weight: 300;
+    color: #893941;
+}
+
 .card section.intro .content .date {
     color: #111111;
     font-family: "Crimson Text", serif;
@@ -327,7 +336,7 @@ section {
 }
 
 .card section.info .assalamualaikum {
-    width: 80%;
+    width: 50%;
     height: 30%;
     object-fit: cover;
     position: relative;
@@ -338,6 +347,22 @@ section {
     width: 85%;
     text-align: center;
     position: relative;
+    z-index: 500;
+}
+
+.card section.info .doa-info {
+    width: 90%;
+    height: 87%;
+    text-align: center;
+    position: relative;
+    z-index: 500;
+}
+
+.card section.info .thanks-info {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: center;
     z-index: 500;
 }
 
@@ -401,15 +426,17 @@ section {
     font-size: 1.375em; /* 22px / 16px = 1.375em (medium heading) */
 }
 
-/* Sections .three, .four, .five styling */
+/* Sections .three, .four, .five, styling */
 .card section.info .event-info .three,
-.card section.info .event-info .four {
+.card section.info .event-info .four,
+.card section.info .event-info .five {
     margin-bottom: 15px;
 }
 
 .card section.info .event-info .three p,
 .card section.info .event-info .four p,
-.card section.info .event-info .five p {
+.card section.info .event-info .five p,
+.card section.info .event-info .six p {
     color: #3a4d1d;
     font-weight: 300;
     font-size: 0.875em; /* 14px / 16px = 0.875em (small text) */
@@ -419,7 +446,8 @@ section {
 
 .card section.info .event-info .three .title,
 .card section.info .event-info .four .title,
-.card section.info .event-info .five .title {
+.card section.info .event-info .five .title,
+.card section.info .event-info .six .title {
     margin-top: 30px;
     font-size: 1em; /* 18px / 16px = 1.125em (small heading) */
     font-weight: 700;
@@ -775,8 +803,8 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 10px;
     z-index: 500;
 }
 
@@ -863,7 +891,7 @@ section {
     align-items: center;
     justify-content: center;
     margin-top: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     z-index: 500;
     padding: 40px 20px;
     /* background: linear-gradient(135deg, #F5E6A3 0%, #E8D372 100%); */
@@ -1144,22 +1172,77 @@ section {
     # Bottom Toggle
 ============================================================================================*/
 .toggle-menu {
+    /* CSS Variables */
+    --blue: #3490dc;
+    --indigo: #6574cd;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #eb455f;
+    --orange: #f6993f;
+    --yellow: #ffed4a;
+    --green: #38c172;
+    --teal: #4dc0b5;
+    --cyan: #6cb2eb;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #3490dc;
+    --secondary: #'6c757d;', sans-serif
+    --success: #38c172;
+    --info: #6cb2eb;
+    --warning: #ffed4a;
+    --danger: #eb455f;
+    --light: #f8f9fa;
+    --dark: #666;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: "Spartan", sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --xpad: 2.5rem !important;
+    
+    /* WebKit specific */
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    
+    /* Layout and positioning */
     position: fixed;
     bottom: -100%;
     left: 0;
     right: 0;
+    width: 96%;
     max-width: 400px;
-    margin: 0 auto;
-    background: linear-gradient(to right, #cb7885, #cb7885, #cb7885); /* #d4d994*/
-    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    transition: bottom 0.4s;
+    margin: 2%;
+    max-height: calc(95vh - 85px);
+    
+    /* Typography */
+    font-family: Spartan !important;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: left;
+    color: #000;
+    
+    /* Box model */
+    box-sizing: border-box;
+    padding: 1%;
+    overflow: hidden;
+    
+    /* Visual styling */
+    background: linear-gradient(to right, #cb7885, #cb7885, #cb7885);
+    border-radius: 20px;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.5);
+    outline: none !important;
+    
+    /* Animation */
+    transition: bottom 0.5s, height 0.5s;
     z-index: 1000;
-    border-radius: 10px;
 }
 
 .toggle-menu.open {
-    bottom: 10%;
+    bottom: 85px !important;
 }
 
 .toggle-menu h1 {
@@ -1173,7 +1256,7 @@ section {
 .toggle-menu .calendar,
 .toggle-menu .location,
 .toggle-menu .music,
-.toggle-menu .wishes,
+.toggle-menu .rsvp,
 .toggle-menu .contact,
 .toggle-menu .ucapan-tetamu {
     display: flex;
@@ -1296,7 +1379,7 @@ section {
     width: 100%;
 }
 
-.toggle-menu .wishes .button {
+.toggle-menu .rsvp .button {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -1305,7 +1388,7 @@ section {
     margin-top: 10px;
 }
 
-.toggle-menu .wishes .button button {
+.toggle-menu .rsvp .button button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1318,20 +1401,20 @@ section {
     background: #F8F4FF;
 }
 
-.toggle-menu .wishes .button button:hover {
+.toggle-menu .rsvp .button button:hover {
     background: #F8F4FF;
     opacity: 0.9;
 }
 
-.toggle-menu .wishes .button button i {
+.toggle-menu .rsvp .button button i {
     font-size: 24px;
 }
 
-.toggle-menu .wishes .button #btn-hadir i {
+.toggle-menu .rsvp .button #btn-hadir i {
     color: green;
 }
 
-.toggle-menu .wishes .button #btn-tidak-hadir i {
+.toggle-menu .rsvp .button #btn-tidak-hadir i {
     color: red;
 }
 
@@ -1507,6 +1590,7 @@ section {
     gap: 10px;
     margin-top: 20px;
     width: 100%;
+    justify-content: center;
 }
 
 .toggle-menu .rsvp form label {
@@ -1515,6 +1599,7 @@ section {
     font-size: 16px;
     font-weight: 500;
     font-family: 'Cormorant Garamond', serif;
+    align-items: center;
 }
 
 .toggle-menu .rsvp form input {
@@ -1524,6 +1609,7 @@ section {
     outline: none;
     border: 1px solid #ddd;
     font-family: 'Cormorant Garamond', serif;
+    text-align: center; /* This centers the placeholder and input text */
 }
 
 .toggle-menu .rsvp .button {
@@ -1539,7 +1625,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 33%;
+    width: 50%;
     border: none;
     border-radius: 5px;
     padding: 8px 6px;
