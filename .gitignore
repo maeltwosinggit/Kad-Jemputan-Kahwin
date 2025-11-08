@@ -1,6 +1,13 @@
 # Database Configuration (Production credentials)
 db_config.php
 
+# Google Sheets Service Account Keys
+*.json
+kad-jemputan-kahwin-*.json
+
+# Test Files
+test_google_sheets.php
+
 # Environment files
 .env
 .env.local

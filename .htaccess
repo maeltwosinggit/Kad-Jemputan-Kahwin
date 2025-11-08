@@ -1,0 +1,12 @@
+# Protect JSON key files from direct access
+<Files "*.json">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Protect configuration files
+<Files "google_sheets_*.php">
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+</Files>

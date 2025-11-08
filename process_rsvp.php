@@ -6,6 +6,19 @@ error_reporting(0);
 // Load configuration
 include 'config.php';
 
+// Load Google Sheets helper (only if configured)
+$google_sheets_enabled = false;
+if (file_exists('google_sheets_config.php') && file_exists('google_sheets_helper.php')) {
+    try {
+        require_once 'google_sheets_helper.php';
+        $google_sheets = new GoogleSheetsHelper();
+        $google_sheets_enabled = true;
+    } catch (Exception $e) {
+        // Google Sheets not configured properly, continue without it
+        error_log("Google Sheets sync disabled: " . $e->getMessage());
+    }
+}
+
 // Set content type to JSON
 header('Content-Type: application/json');
 
@@ -48,11 +61,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      VALUES ('$nama', $jumlah_pax, '$hubungan', '$status')";
     
     if (mysqli_query($connection, $insert_query)) {
+        $insert_id = mysqli_insert_id($connection);
+        
         // Update the old counter table for backward compatibility
         if ($status == 'hadir') {
             mysqli_query($connection, "UPDATE kehadiran SET jumlah_kehadiran = jumlah_kehadiran + $jumlah_pax WHERE id = 1");
         } else {
             mysqli_query($connection, "UPDATE kehadiran SET jumlah_tidak_hadir = jumlah_tidak_hadir + $jumlah_pax WHERE id = 1");
+        }
+        
+        // Sync to Google Sheets if enabled
+        if ($google_sheets_enabled) {
+            try {
+                $google_sheets->addRSVPEntry($insert_id, $nama, $jumlah_pax, $hubungan, $status, date('Y-m-d H:i:s'));
+            } catch (Exception $e) {
+                // Log error but don't fail the request
+                error_log("Google Sheets sync failed for RSVP: " . $e->getMessage());
+            }
         }
         
         $status_text = ($status == 'hadir') ? 'kehadiran' : 'ketidakhadiran';
