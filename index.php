@@ -502,6 +502,9 @@ if (mysqli_num_rows($query3) == 0) {
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/1.18.11/tsparticles.min.js"> </script>
 
+    <!-- Calendar Configuration from PHP -->
+    <script src="./calendar_config.js.php"></script>
+    
     <!-- Custom Js -->
     <script src="./js/main.js"></script>
 </body>

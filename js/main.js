@@ -109,6 +109,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
         return;
     }
 
+    // Initialize and verify calendar configuration
+    const eventConfig = getEventConfig();
+    console.log('Calendar event initialized:', eventConfig);
+
     // Initialize countdown after DOM is ready
     setupCountdown(".campaign-0", new Date().getTime(), getWeddingTimestamp());
     
@@ -184,13 +188,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
 /** =====================================================
  *  Add to Calendar
   ======================================================= */
-const event = {
-    title: "Jemputan Kenduri Kahwin John & Sarah",
-    startDate: "99991231T033000Z", // YYYYMMDDTHHmmssZ (UTC)
-    endDate: "99991231T090000Z",
-    location: "10A Jalan Seri Ampang 2, Kampung Pisang, 47300 Subang, Selangor, Malaysia",
-    description: "Kami menjemput tuan/puan hadir ke majlis perkahwinan anakanda kami.",
-};
+
+// Get event configuration from PHP (loaded by calendar_config.js.php)
+function getEventConfig() {
+    // Check if wedding event config is available
+    if (window.weddingEventConfig) {
+        return window.weddingEventConfig;
+    }
+    
+    // Fallback configuration if PHP config fails to load
+    console.warn('Wedding event config not loaded, using fallback');
+    return {
+        title: "Wedding Invitation",
+        startDate: "20251213T030000Z",
+        endDate: "20251213T090000Z", 
+        location: "Wedding Venue",
+        description: "Wedding celebration invitation.",
+    };
+}
 
 // Function to generate Google Calendar URL
 function generateGoogleCalendarLink(event) {
@@ -238,14 +253,16 @@ function downloadICS(filename, content) {
 
 // Handler for Google Calendar button
 function addGoogleCalendar() {
+    const event = getEventConfig();
     const googleLink = generateGoogleCalendarLink(event);
     window.open(googleLink, "_blank");
 }
 
 // Handler for Apple Calendar button
 function addAppleCalendar() {
+    const event = getEventConfig();
     const icsContent = generateICS(event);
-    downloadICS("event.ics", icsContent);
+    downloadICS("wedding-invitation.ics", icsContent);
 }
 
 
